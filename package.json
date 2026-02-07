@@ -27,6 +27,8 @@
     },
     "nsis": {
       "oneClick": false,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true
     },

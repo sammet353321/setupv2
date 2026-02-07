@@ -57,15 +57,17 @@ function createMainWindow(url) {
         }
     });
 
+    // User-Agent'i Chrome olarak ayarla (Login sorunlarını çözer)
+    const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
+    mainWindow.webContents.setUserAgent(userAgent);
+
     mainWindow.loadFile(path.join(__dirname, 'src/index.html'));
     
     // Yüklendikten sonra URL'i renderer'a gönder
     mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.send('load-url', url);
-        // Güncellemeleri kontrol et
-        if (!isDev) {
-            autoUpdater.checkForUpdates();
-        }
+        // Güncellemeleri her zaman kontrol et (Dev modunda hata verebilir ama dener)
+        autoUpdater.checkForUpdates();
     });
 
     mainWindow.on('closed', () => {
@@ -148,6 +150,7 @@ autoUpdater.on('update-available', (info) => {
 
 autoUpdater.on('update-not-available', (info) => {
     // log.info('Update not available.');
+    if (mainWindow) mainWindow.webContents.send('update-not-available', info);
 });
 
 autoUpdater.on('error', (err) => {

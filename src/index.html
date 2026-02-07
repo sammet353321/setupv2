@@ -12,8 +12,9 @@
             <div class="title">Koç Sigortam</div>
             <div class="controls">
                 <!-- Update Icon (Hidden by default) -->
-                <button class="control-btn" id="btn-update" style="display: none;" title="Güncelleme Mevcut">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="orange"/></svg>
+                <button class="control-btn" id="btn-update" style="display: none;" title="Yeni Sürüm Mevcut - İndirmek İçin Tıkla">
+                    <!-- Download Icon -->
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="#4CAF50"/></svg>
                 </button>
                 
                 <!-- Refresh -->
@@ -38,12 +39,13 @@
             </div>
         </div>
 
-        <webview id="main-webview" src="about:blank"></webview>
+        <webview id="main-webview" src="about:blank" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"></webview>
     </div>
 
     <!-- Update Overlay -->
     <div id="update-overlay">
         <div class="update-box">
+            <img src="logo.png" style="width: 80px; height: 80px; margin-bottom: 20px;">
             <h3 id="update-title">Yeni Sürüm Mevcut!</h3>
             <p id="update-msg">Uygulamanın yeni bir sürümü var. İndirmek ve kurmak ister misiniz?</p>
             

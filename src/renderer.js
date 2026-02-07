@@ -47,13 +47,17 @@ window.api.onLoadUrl((url) => {
 
 // Güncelleme var mı?
 window.api.onUpdateAvailable((info) => {
-    // Sadece iconu göster veya direkt sor. Kullanıcı "yeni sürüm varsa soru soracak" dedi.
-    // İkonu gösterelim, belki kullanıcı o an işini bölmek istemez.
-    // AMA talepte "soru soracak" diyor. Direkt popup açalım.
-    btnUpdate.style.display = 'flex'; // İkonu da açalım
+    btnUpdate.style.display = 'flex'; // İkonu göster
     
-    updateOverlay.style.display = 'flex';
-    statusText.innerText = `Sürüm: ${info.version}`;
+    // Otomatik olarak da bildirebiliriz ama şimdilik sadece ikon çıksın
+    // updateOverlay.style.display = 'flex';
+    // statusText.innerText = `Sürüm: ${info.version}`;
+    console.log("Update Available:", info);
+});
+
+window.api.onUpdateNotAvailable((info) => {
+    console.log("No update available.");
+    // İsterseniz burada "Sürümünüz güncel" diye küçük bir bildirim gösterebilirsiniz.
 });
 
 btnNo.addEventListener('click', () => {
@@ -91,6 +95,13 @@ window.api.onUpdateDownloaded(() => {
 });
 
 window.api.onUpdateError((err) => {
+    // Dev modunda hata olması normaldir (imza/yml dosyası yok diye)
+    console.error("Update Error:", err);
+    if (err.includes("ENOENT") && err.includes("dev-app-update.yml")) {
+        // Dev modunda bu hatayı görmezden gelebiliriz
+        return;
+    }
+    
     updateTitle.innerText = "Hata";
     updateMsg.innerText = "Güncelleme başarısız oldu.";
     statusText.innerText = err;
@@ -98,5 +109,5 @@ window.api.onUpdateError((err) => {
         updateOverlay.style.display = 'none';
         updateActions.style.display = 'flex'; // Reset UI
         progressContainer.style.display = 'none';
-    }, 3000);
+    }, 5000);
 });
