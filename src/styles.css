@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Çerçevesiz pencere için */
+}
+
+/* --- Title Bar --- */
+#title-bar {
+    -webkit-app-region: drag;
+    height: 32px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    user-select: none;
+}
+
+#title-bar .title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#title-bar .controls {
+    display: flex;
+    -webkit-app-region: no-drag;
+}
+
+.control-btn {
+    width: 30px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.control-btn:hover {
+    background-color: #555;
+}
+
+.control-btn.close:hover {
+    background-color: #e81123;
+}
+
+.control-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* --- Setup Page --- */
+.setup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: white;
+}
+
+.setup-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.setup-container input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.setup-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.setup-container button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Main Window --- */
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+webview {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Update Overlay --- */
+#update-overlay {
+    position: fixed;
+    top: 32px; /* Title bar height */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.update-box {
+    background-color: #2d2d2d;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #555;
+    border-radius: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+    display: none;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #28a745;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+.btn-yes {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-no {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

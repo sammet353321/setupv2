@@ -1,0 +1,45 @@
+{
+  "name": "koc-sigortam",
+  "productName": "Koç Sigortam",
+  "version": "1.0.0",
+  "description": "Sigorta Kayıt Uygulaması",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "Koç Sigortam",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^40.2.1",
+    "electron-builder": "^26.7.0"
+  },
+  "dependencies": {
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.7.3"
+  },
+  "build": {
+    "appId": "com.kocsigortam.app",
+    "productName": "Koç Sigortam",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "sammet353321",
+        "repo": "setupv2"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sammet353321/setupv2.git"
+  }
+}
